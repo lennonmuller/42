@@ -1,10 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/21 20:01:05 by lmuler-f          #+#    #+#              #
+#    Updated: 2025/10/21 20:01:05 by lmuler-f         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c
+SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c
 OBJ = $(SRC:.c=.o)
-NAME = libft.a
-
-.PHONY: all clean fclan re
 
 all: $(NAME)
 
@@ -17,4 +27,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclan all
+re: fclean all
+
+.PHONY: all clean fclean re

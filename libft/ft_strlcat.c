@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:48:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/10/23 19:16:17 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/10/25 16:43:40 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/10/25 16:52:40 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
+	unsigned int	a;
+	unsigned int	b;
 
 	i = 0;
-	while (str[i])
+	a = ft_strlen(dst);
+	b = ft_strlen(src);
+	if (a >= size)
+		return (b + size);
+	while (src[i] != '\0' && a + i < size - 1)
 	{
+		dst[i + a] = src[i];
 		i++;
 	}
-	return (i);
+	if (a + i < size)
+		dst[a + i] = '\0';
+	return (a + b);
 }

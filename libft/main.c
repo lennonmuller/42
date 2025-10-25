@@ -1,12 +1,17 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 20:01:01 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/10/21 20:01:01 by lmuler-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int ft_isalpha(int c);
-int ft_isdigit(int c);
-int ft_isalnum(int c);
-int ft_isascii(int c);
-int ft_isprint(int c);
-int ft_strlen(char *str);
 
 int main()
 {
@@ -50,6 +55,71 @@ int main()
     int	len;
     len = ft_strlen(str);
     if (ft_strlen(str))
-        printf("'%s' tem %d caracteres. \n", str, len);
+	{
+		printf("'%s' tem %d caracteres. \n", str, len);
+	}
+
+	// Example ft_memset
+	char	mem[10];
+	ft_memset(mem, 'A', 9);
+	mem[9] = '\0';
+	printf("%s\n", mem);
+
+    // Example ft_bzero
+    char    data[] = "Minha string muito loca";
+    ft_bzero(data, 3);
+    printf("%s\n", data + 3);
+
+    // Example ft_memcpy
+    char    cps[] = "Magia da bagaceira negra!";
+    char    cpd[30];
+    ft_memcpy(cpd, cps, 19);
+    cpd[18] = '\0';
+
+    printf("Origem: %s\n", cps);
+    printf("Destino: %s\n", cpd);
+
+    // Example ft_memmove
+    char    ms[] = "ABCDEFGH";
+    printf("Original: %s\n", ms);
+    ft_memmove(ms, ms + 2, 6);
+    printf("apos memmove: %s\n", ms);
+
+    // Example strlcpy
+    printf("\n====STRLCPY:====\n");
+    char    origem[] = "Common Core 42";
+    char    destino[15];
+    unsigned int    r;
+    r = ft_strlcpy(destino, origem, sizeof(destino));
+    printf("Destino: %s\n", destino);
+    printf("comprimento da origem: %u\n", r);
+
+     // Example strlcat
+    printf("\n====STRLCAT:====\n");
+    char    dcat[] = "blabla";
+    char    scat[] = "pipipopopo";
+    unsigned int    siz = 25;
+    printf("%zu\n", ft_strlcat(dcat, scat, siz));
+
+    // Example toupper
+    printf("\n====TOUPPER:====\n");
+    int    toup = 'a';
+    printf("%c\n", ft_toupper(toup));
+
+    // Example tolower
+    printf("\n====TOLOWER:====\n");
+    int    tolow = 'A';
+    printf("%c\n", ft_tolower(tolow));
+
+    // Example strchr
+    printf("\n====STRCHR:====\n");
+    const char *strchr = "churrasco com chimarrao";
+    char *result;
+
+    result = ft_strchr(strchr, 'm');
+    if (result)
+        printf("Caractere 'm' encontrado na posição: %ld\n", result - strchr);
+    else
+        printf("Caractere 'm' não encontrado.\n");
     return (0);
 }

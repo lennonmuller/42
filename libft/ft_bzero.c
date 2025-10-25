@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:48:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/10/23 19:16:17 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/10/23 18:37:49 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/10/23 19:43:17 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
+void	*ft_memset(void *s, int c, size_t n);
 
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, '\0', n);
 }
+
+// int	main(void)
+// {
+// 	char	data[] = "Esta sera a string";
+// 	printf("Antes: %s\n", data);
+
+// 	ft_bzero(data, 10);
+// 	printf("Depois: %s\n", data);
+// 	return (0);
+// }

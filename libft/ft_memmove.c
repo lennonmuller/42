@@ -1,25 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:48:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/10/23 19:16:17 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/10/25 12:27:23 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/10/25 14:38:42 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
+	unsigned char	*d;
+	unsigned const char	*s;
 	size_t	i;
 
-	i = 0;
-	while (str[i])
+	if (!dst && !src)
 	{
-		i++;
+		return (dst);
 	}
-	return (i);
+	i = 0;
+	d = (unsigned char *)dst;
+	s = (unsigned const char *)src;
+
+	if (d > s)
+	{
+		while (len > 0)
+		{
+			d[i] = s[i];
+			i--;
+		}
+	}
+	else
+	{
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (dst);
 }
