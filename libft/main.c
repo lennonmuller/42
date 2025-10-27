@@ -121,5 +121,36 @@ int main()
         printf("Caractere 'm' encontrado na posição: %ld\n", result - strchr);
     else
         printf("Caractere 'm' não encontrado.\n");
+    
+    // Example strrchr
+    printf("\n====STRCHR:====\n");
+    const char *strchrr = "churrasco com chimarrao";
+    char *resultt;
+
+    resultt = ft_strrchr(strchrr, 'm');
+    if (resultt)
+        printf("Ultimo caractere 'm' encontrado na posição: %ld\n", resultt - strchrr);
+    else
+        printf("Caractere 'm' não encontrado.\n");
+
+    // Example strrchr
+    printf("\n====STRNCMP:====\n");
+    char	s1[] = "Hello";
+	char	s2[] = "Hello World";
+	unsigned int x = 7;
+
+	printf("%d\n", ft_strncmp(s1, s2, x));
+
+    // Example memchr
+    printf("\n====MEMCHR:====\n");
+    char memo[] = "Tung tung tung tung sahur";
+    char target = 'h';
+    size_t leni = 26;
+
+    void *resulti = ft_memchr(memo, target, leni);
+    if (resulti)
+        printf("ft_memchr encontrou: '%c' em: %s\n", target, (char *)resulti);
+    else
+        printf("ft_memchr não encontrou: '%c'\n", target);
     return (0);
 }
