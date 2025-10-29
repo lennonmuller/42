@@ -152,5 +152,6 @@ int main()
         printf("ft_memchr encontrou: '%c' em: %s\n", target, (char *)resulti);
     else
         printf("ft_memchr não encontrou: '%c'\n", target);
+
     return (0);
 }
