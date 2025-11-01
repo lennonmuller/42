@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 20:10:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/01 18:54:27 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/11/01 12:05:08 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/11/01 20:07:49 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	unsigned char	*st;
-	unsigned char	ch;
 	size_t	i;
+	size_t	j;
 	
 	i = 0;
-	st = (unsigned char *)s;
-	ch = (unsigned char)c;
-	while (i < n)
+	j = 0;
+	if (*little == '\0')
+		return (char *)big;
+	while (big[i] && i < len)
 	{
-		if (st[i] == ch)
-			return ((void *) &st[i]);
+		while (big[i + j] == little[j] && big[i + j] && i + j < len)
+		{
+			j++;
+			if (little[j] == 0)
+				return (char *)big + i;
+		}
 		i++;
+		j = 0;
 	}
-	
-	return (NULL);
+	return (0);
 }

@@ -123,7 +123,7 @@ int main()
         printf("Caractere 'm' não encontrado.\n");
     
     // Example strrchr
-    printf("\n====STRCHR:====\n");
+    printf("\n====STRRCHR:====\n");
     const char *strchrr = "churrasco com chimarrao";
     char *resultt;
 
@@ -133,7 +133,7 @@ int main()
     else
         printf("Caractere 'm' não encontrado.\n");
 
-    // Example strrchr
+    // Example strncmp
     printf("\n====STRNCMP:====\n");
     char	s1[] = "Hello";
 	char	s2[] = "Hello World";
@@ -153,5 +153,18 @@ int main()
     else
         printf("ft_memchr não encontrou: '%c'\n", target);
 
+
+    // Example memcmp
+    printf("\n====MEMCMP:====\n");
+    char blabla[] = "abc";
+    char blabla2[] = "acb";
+
+    int resultado = ft_memcmp(blabla, blabla2, sizeof(int));
+    printf("%d\n", resultado);
+
+    // Example strnstr
+    printf("\n====STRNSTR:====\n");
+    printf("%s\n", ft_strnstr("Hello, world!", "world", 13));
+    printf("%s\n", ft_strnstr("abcdef", "ass", 6));
     return (0);
 }

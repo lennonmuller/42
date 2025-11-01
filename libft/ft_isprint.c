@@ -6,13 +6,11 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:34:17 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/10/23 18:29:56 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/01 15:22:42 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	if (!(c >= 0 && c <= 31))
-		return (1);
-	return (0);
+	return ((c >= 32 && c <= 126));
 }

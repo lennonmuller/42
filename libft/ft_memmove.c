@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 12:27:23 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/10/25 14:38:42 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/01 15:19:29 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,19 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*d;
 	unsigned const char	*s;
-	size_t	i;
 
 	if (!dst && !src)
 	{
 		return (dst);
 	}
-	i = 0;
 	d = (unsigned char *)dst;
 	s = (unsigned const char *)src;
 
 	if (d > s)
-	{
-		while (len > 0)
-		{
-			d[i] = s[i];
-			i--;
-		}
-	}
+		while (len--)
+			d[len] = s[len];
 	else
-	{
-		while (i < len)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
+		while (len--)
+			*d++ = *s++;
 	return (dst);
 }

@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 17:47:42 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/10/27 19:09:03 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/01 16:00:38 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int	i;
-	unsigned char	cc;
+	unsigned const char *ptr;
+	unsigned const char *sptr;
 
-	i = 0;
-	cc = (unsigned char)c;
-	while (s[i])
+	sptr = (unsigned const char *) s;
+	
+	ptr = NULL; 
+	
+	while(*sptr)
 	{
-		i++;
+		if (*sptr == (unsigned char) c)
+			ptr = &*sptr;
+		sptr++;
 	}
-	if (cc == '\0')
-		return ((char *) &s[i]);
-	if (s[i] == '\0')
-		i--;
-	while (s[i] > 0)
-	{
-		if (s[i] == cc)
-			return ((char *) &s[i]);
-		i--;
-	}
-	return (NULL);
+	if (*sptr == (unsigned char) c)
+		ptr = &*sptr;
+	return ((char *)ptr);
 }

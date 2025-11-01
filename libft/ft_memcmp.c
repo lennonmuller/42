@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 20:10:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/01 18:54:27 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/11/01 11:40:51 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/11/01 13:21:49 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*st;
-	unsigned char	ch;
 	size_t	i;
-	
+	const unsigned char	*p1;
+	const unsigned char	*p2;
+
 	i = 0;
-	st = (unsigned char *)s;
-	ch = (unsigned char)c;
+	p1 = (const unsigned char *) s1;
+	p2 = (const unsigned char *) s2;
 	while (i < n)
 	{
-		if (st[i] == ch)
-			return ((void *) &st[i]);
+		if (p1[i] != p2[i])
+			return (p1[i] - p2[i]);
 		i++;
 	}
-	
-	return (NULL);
+	return (0);
 }
