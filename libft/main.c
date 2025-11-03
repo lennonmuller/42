@@ -153,7 +153,6 @@ int main()
     else
         printf("ft_memchr não encontrou: '%c'\n", target);
 
-
     // Example memcmp
     printf("\n====MEMCMP:====\n");
     char blabla[] = "abc";
@@ -172,5 +171,19 @@ int main()
     printf("%s\n", ft_substr("Churrasco", 1 , 5));
     printf("'%s'\n", ft_substr("42", 0, 2));
 	printf("'%s'\n", ft_substr("chimarrao", 3, 50));
+
+    // Example of ft_strjoin
+    printf("\n====STRJOIN:====\n");
+    char	*s10= "where is my ";
+	char	*s20= "malloc ???";
+	char	*nstr = ft_strjoin(s10, s20);
+
+	printf("%s\n", nstr);
+	free(nstr);
+    printf("%s\n", ft_strjoin("42", ""));
+
+    // Example of ft_strtrim
+    printf("\n====STRTRIM:====\n");
+    printf("%s\n", ft_strtrim("xuxuXurrascoxuxu", "xu"));
     return (0);
 }
