@@ -118,7 +118,7 @@ int main()
 
     result = ft_strchr(strchr, 'm');
     if (result)
-        printf("Caractere 'm' encontrado na posição: %ld\n", result - strchr);
+        printf("Caractere 'm' encontrado na posicao: %ld\n", result - strchr);
     else
         printf("Caractere 'm' não encontrado.\n");
     
@@ -129,7 +129,7 @@ int main()
 
     resultt = ft_strrchr(strchrr, 'm');
     if (resultt)
-        printf("Ultimo caractere 'm' encontrado na posição: %ld\n", resultt - strchrr);
+        printf("Ultimo caractere 'm' encontrado na posicao: %ld\n", resultt - strchrr);
     else
         printf("Caractere 'm' não encontrado.\n");
 
@@ -166,5 +166,11 @@ int main()
     printf("\n====STRNSTR:====\n");
     printf("%s\n", ft_strnstr("Hello, world!", "world", 13));
     printf("%s\n", ft_strnstr("abcdef", "ass", 6));
+
+    //Example ft_subst
+    printf("\n====SUBSTR:====\n");
+    printf("%s\n", ft_substr("Churrasco", 1 , 5));
+    printf("'%s'\n", ft_substr("42", 0, 2));
+	printf("'%s'\n", ft_substr("chimarrao", 3, 50));
     return (0);
 }

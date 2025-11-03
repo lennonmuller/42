@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 15:45:28 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/01 13:23:06 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:35:18 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	len;
+	size_t			len;
 	unsigned int	i;
 
 	len = 0;

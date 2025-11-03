@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 16:43:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/03 12:33:18 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/11/03 11:15:57 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/11/03 12:39:43 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t			i;
-	unsigned int	a;
-	unsigned int	b;
+	char	*subs;
 
-	i = 0;
-	a = ft_strlen(dst);
-	b = ft_strlen(src);
-	if (a >= size)
-		return (b + size);
-	while (src[i] != '\0' && a + i < size - 1)
-	{
-		dst[i + a] = src[i];
-		i++;
-	}
-	if (a + i < size)
-		dst[a + i] = '\0';
-	return (a + b);
+	if (!s)
+		return (NULL);
+	if ((size_t)start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	subs = ft_calloc(len + 1, sizeof(char));
+	if (!subs)
+		return (NULL);
+	ft_strlcpy(subs, s + start, len + 1);
+	return (subs);
 }

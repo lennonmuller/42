@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 11:40:51 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/01 13:21:49 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:34:20 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	size_t				i;
 	const unsigned char	*p1;
 	const unsigned char	*p2;
 

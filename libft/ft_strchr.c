@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 17:45:59 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/10/25 18:11:40 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:36:00 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*ft_strchr(const char *s, int c)
 {
 	unsigned int	i;
-	unsigned char cc;
-	
+	unsigned char	cc;
+
 	i = 0;
 	cc = (unsigned char)c;
 	while (s[i])
@@ -25,7 +25,6 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *) &s[i]);
 		i++;
 	}
-	
 	if (cc == '\0')
 	{
 		return ((char *) &s[i]);
