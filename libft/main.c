@@ -185,5 +185,6 @@ int main()
     // Example of ft_strtrim
     printf("\n====STRTRIM:====\n");
     printf("%s\n", ft_strtrim("xuxuXurrascoxuxu", "xu"));
+    
     return (0);
 }
