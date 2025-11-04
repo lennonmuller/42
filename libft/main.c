@@ -174,8 +174,8 @@ int main()
 
     // Example of ft_strjoin
     printf("\n====STRJOIN:====\n");
-    char	*s10= "where is my ";
-	char	*s20= "malloc ???";
+    char	*s10= "chuchu ";
+	char	*s20= "com chimarrao";
 	char	*nstr = ft_strjoin(s10, s20);
 
 	printf("%s\n", nstr);
