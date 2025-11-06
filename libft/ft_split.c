@@ -6,26 +6,30 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:32:54 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/04 18:02:51 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:28:38 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static size_t	count_words(char const *s, char c);
+static char		*get_word(char const *s, char c);
+static char		**ft_free(char const **s, int i);
 
 char	**ft_split(char const *s, char c)
 {
 	char	**str;
 	size_t	i;
 	size_t	y;
-	
+
 	if (!s)
 		return (NULL);
 	str = ft_calloc(count_words(s, c) + 1, sizeof(char *));
 	if (!str)
 		return (NULL);
 	i = 0;
+	y = 0;
 	while (s[i])
-	{
 		if (s[i] != c)
 		{
 			str[y] = get_word(&s[i], c);
@@ -37,7 +41,6 @@ char	**ft_split(char const *s, char c)
 		}
 		else
 			i++;
-	}
 	return (str);
 }
 
@@ -45,7 +48,7 @@ static size_t	count_words(char const *s, char c)
 {
 	int	i;
 	int	words;
-	
+
 	i = 0;
 	words = 0;
 	while (s[i])
@@ -59,7 +62,7 @@ static size_t	count_words(char const *s, char c)
 	return (words);
 }
 
-static char *get_word(char const *s, char c)
+static char	*get_word(char const *s, char c)
 {
 	size_t	len;
 	size_t	i;

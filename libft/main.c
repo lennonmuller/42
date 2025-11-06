@@ -12,6 +12,7 @@
 
 #include "libft.h"
 
+char transform(unsigned int i, char c);
 
 int main()
 {
@@ -185,6 +186,48 @@ int main()
     // Example of ft_strtrim
     printf("\n====STRTRIM:====\n");
     printf("%s\n", ft_strtrim("xuxuXurrascoxuxu", "xu"));
+
+    // Example of ft_split
+    printf("\n====SPLIT:====\n");
+    char    **split = ft_split("festa da xuxa", ' ');
+    printf("%s\n", split[0]);
+    printf("%s\n", split[1]);
+    printf("%s\n", split[2]);
+    printf("%s\n", split[3]);
+    free(split[0]);
+    free(split[1]);
+    free(split[2]);
+    free(split[3]);
+    free(split);
+
+    // Example of ft_itoa
+    printf("\n====ITOA:====\n");
+    int it = 42;
+    printf("%s\n", ft_itoa(it));
+
+    //Example of ft_strmapi
+    printf("\n====STRMAPI:====\n");
+    const char  *mamaco = "bezerro manso mama na mae dele e na dos outros";
+    char    *modified = ft_strmapi(mamaco, ft_split(mamaco, ' '));
+    if (modified)
+    {
+        printf("Original: %s\n", mamaco);
+        printf("Modificada: %s\n", modified);
+        free(modified);
+    }
+    else
+    {
+        printf("Memory allocation failed.\n");
+    }
+
     
     return (0);
 }
+
+char transform(unsigned int i, char c)
+    {
+        if (i % 2 == 0)
+            return (c >= 'a' && c <= 'z') ? c - 32 : c;
+        else
+            return (c >= 'A' && c <= 'Z') ? c + 32 : c;
+    }
