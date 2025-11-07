@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 17:32:00 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/07 12:20:53 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 14:42:01 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size_t	len;
 	char	*str;
 
+	if (!f)
+		return ((char *)s);
 	i = 0;
 	len = ft_strlen(s);
 	str = ft_calloc(sizeof(char), (len + 1));
