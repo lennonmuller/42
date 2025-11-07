@@ -220,7 +220,6 @@ int main()
         printf("Memory allocation failed.\n");
     }
 
-    
     return (0);
 }
 
