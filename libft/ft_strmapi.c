@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 17:32:00 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/06 18:17:27 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 12:20:53 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t	i;
 	size_t	len;
-	char *str;
+	char	*str;
 
 	i = 0;
 	len = ft_strlen(s);
@@ -33,9 +33,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 // char transform(unsigned int i, char c)
 // {
 //     if (i % 2 == 0)
-//         return (c >= 'a' && c <= 'z') ? c - 32 : c;
+//         return ((c >= 'a' && c <= 'z') ? c - 32 : c);
 //     else
-//         return (c >= 'A' && c <= 'Z') ? c + 32 : c;
+//         return ((c >= 'A' && c <= 'Z') ? c + 32 : c);
 // }
 
 // int main(void)
@@ -53,5 +53,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 //     {
 //         printf("Memory allocation failed.\n");
 //     }
-//     return 0;
+//     return (0);
 // }

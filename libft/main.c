@@ -185,7 +185,7 @@ int main()
 
     // Example of ft_strtrim
     printf("\n====STRTRIM:====\n");
-    printf("%s\n", ft_strtrim("xuxuXurrascoxuxu", "xu"));
+    printf("%s\n", ft_strtrim("xuxuXuxaxuxu", "xu"));
 
     // Example of ft_split
     printf("\n====SPLIT:====\n");
@@ -208,7 +208,7 @@ int main()
     //Example of ft_strmapi
     printf("\n====STRMAPI:====\n");
     const char  *mamaco = "bezerro manso mama na mae dele e na dos outros";
-    char    *modified = ft_strmapi(mamaco, ft_split(mamaco, ' '));
+    char    *modified = ft_strmapi(mamaco, transform);
     if (modified)
     {
         printf("Original: %s\n", mamaco);

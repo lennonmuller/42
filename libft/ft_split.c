@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:32:54 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/06 18:28:38 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 12:36:15 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,19 @@
 
 static size_t	count_words(char const *s, char c);
 static char		*get_word(char const *s, char c);
-static char		**ft_free(char const **s, int i);
+static char		**free_split(char const **s, int i);
+static char		**fill_split(char **split, char const *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
 	char	**str;
-	size_t	i;
-	size_t	y;
 
 	if (!s)
 		return (NULL);
 	str = ft_calloc(count_words(s, c) + 1, sizeof(char *));
 	if (!str)
 		return (NULL);
-	i = 0;
-	y = 0;
-	while (s[i])
-		if (s[i] != c)
-		{
-			str[y] = get_word(&s[i], c);
-			if (!str[y])
-				return (ft_free((const char **)str, y - 1));
-			y++;
-			while (s[i] && s[i] != c)
-				i++;
-		}
-		else
-			i++;
+	str = fill_split(str, s, c);
 	return (str);
 }
 
@@ -83,7 +69,7 @@ static char	*get_word(char const *s, char c)
 	return (word);
 }
 
-static char	**ft_free(char const **s, int i)
+static char	**free_split(char const **s, int i)
 {
 	while (i >= 0)
 	{
@@ -92,4 +78,28 @@ static char	**ft_free(char const **s, int i)
 	}
 	free(s);
 	return (NULL);
+}
+
+static char	**fill_split(char **split, char const *s, char c)
+{
+	size_t	i;
+	size_t	y;
+
+	i = 0;
+	y = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			split[y] = get_word(&s[i], c);
+			if (!split[y])
+				return (free_split((const char **)split, y - 1));
+			y++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
+		else
+			i++;
+	}
+	return (split);
 }
