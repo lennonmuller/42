@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 15:43:52 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/07 16:17:28 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:07:01 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	if (!c)
-		return ;
 	write(fd, &c, 1);
 }

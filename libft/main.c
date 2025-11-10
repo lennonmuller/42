@@ -14,6 +14,9 @@
 
 char transform(unsigned int i, char c);
 void    test_iteri(unsigned int i, char *c);
+void *dup_content(void *c);
+void print_node(void *content);
+void del_content(void *c);
 
 int main()
 {
@@ -168,11 +171,43 @@ int main()
     printf("%s\n", ft_strnstr("Hello, world!", "world", 13));
     printf("%s\n", ft_strnstr("abcdef", "ass", 6));
 
-    //Example ft_subst
     printf("\n====SUBSTR:====\n");
-    printf("%s\n", ft_substr("Churrasco", 1 , 5));
-    printf("'%s'\n", ft_substr("42", 0, 2));
-	printf("'%s'\n", ft_substr("chimarrao", 3, 50));
+    char *sub1 = ft_substr("Churrasco", 1 , 5);
+    char *sub2 = ft_substr("42", 0, 2);
+    char *sub3 = ft_substr("chimarrao", 3, 50);
+    printf("%s\n", sub1);
+    printf("'%s'\n", sub2);
+    printf("'%s'\n", sub3);
+    free(sub1);
+    free(sub2);
+    free(sub3);
+
+    // Example atoi
+    printf("\n====ATOI:====\n");
+    char numstr1[] = "42";
+    char numstr2[] = "   -123abc";
+    char numstr3[] = "9999999999";
+    printf("%d\n", ft_atoi(numstr1));
+    printf("%d\n", ft_atoi(numstr2));
+    printf("%d\n", ft_atoi(numstr3));
+
+    // Example calloc
+    printf("\n====CALLOC:====\n");
+    int *arr = (int *)ft_calloc(5, sizeof(int));
+    if (arr)
+    {
+        for (int i = 0; i < 5; i++)
+            printf("%d ", arr[i]);
+        printf("\n");
+        free(arr);
+    }
+
+    // Example strdup
+    printf("\n====STRDUP:====\n");
+    char *original = "duplicar";
+    char *copy = ft_strdup(original);
+    printf("Original: %s | Copia: %s\n", original, copy);
+    free(copy);
 
     // Example of ft_strjoin
     printf("\n====STRJOIN:====\n");
@@ -223,7 +258,7 @@ int main()
 
     //Example of Iteri
     printf("\n====STRITERI:====\n");
-    char    s[] = "coe buneca";
+    char    s[] = "eai mae";
     ft_striteri(s, test_iteri);
     printf("%s\n", s);
 
@@ -237,8 +272,50 @@ int main()
  /*    char puts[] = "labubu\n"; */
     ft_putstr_fd("Vamos ", fd);
     ft_putendl_fd("Sao Paulo!!", fd);
-    ft_putnbr_fd(12345789, 1);
-    
+    ft_putnbr_fd(15632, 1);
+
+
+
+    printf("\n====BONUS LISTAS:====\n");
+
+    // ft_lstnew
+    t_list *node1 = ft_lstnew(ft_strdup("Primeiro"));
+    printf("Node1 content: %s\n", (char *)node1->content);
+
+    // ft_lstadd_front
+    t_list *node2 = ft_lstnew(ft_strdup("Segundo"));
+    ft_lstadd_front(&node1, node2);
+    printf("Primeiro da lista agora: %s\n", (char *)node1->content);
+
+    // ft_lstsize
+    printf("Tamanho da lista: %d\n", ft_lstsize(node1));
+
+    // ft_lstlast
+    t_list *last = ft_lstlast(node1);
+    printf("Ultimo elemento: %s\n", (char *)last->content);
+
+    // ft_lstadd_back
+    t_list *node3 = ft_lstnew(ft_strdup("Terceiro"));
+    ft_lstadd_back(&node1, node3);
+    printf("Novo ultimo: %s\n", (char *)ft_lstlast(node1)->content);
+    printf("Tamanho atualizado: %d\n", ft_lstsize(node1));
+
+    // // ft_lstdelone
+    // printf("Testando lstdelone em node3\n");
+    // ft_lstdelone(node3, del_content);
+
+    // ft_lstiter
+    printf("Iterando lista:\n");
+    ft_lstiter(node1, print_node);
+
+    // ft_lstmap
+    printf("Mapeando lista (duplicar strings):\n");
+    t_list *mapped = ft_lstmap(node1, dup_content, del_content);
+    ft_lstiter(mapped, print_node);
+
+    // ft_lstclear
+    ft_lstclear(&node1, del_content);
+    ft_lstclear(&mapped, del_content);
 
     return (0);
 }
@@ -255,4 +332,17 @@ void    test_iteri(unsigned int i, char *c)
 {
 	if (i % 2 == 0)
 		*c = *c - 32;
+}
+
+void print_node(void *content)
+{
+    printf("%s\n", (char *)content);
+}
+void *dup_content(void *c)
+{ 
+    return ft_strdup((char *)c);
+}
+void del_content(void *c)
+{
+    free(c);
 }

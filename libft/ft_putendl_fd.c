@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:19:23 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/07 17:25:32 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:11:27 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;
 
-	if(!s)
+	if (!s)
 		return ;
 	i = 0;
 	while (s[i])

@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 20:10:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/03 12:34:00 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:16:17 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (st[i] == ch)
-			return ((void *) &st[i]);
+			return ((void *)&st[i]);
 		i++;
 	}
 	return (NULL);

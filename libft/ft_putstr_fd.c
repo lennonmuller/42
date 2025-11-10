@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:12:44 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/07 17:06:52 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:16:52 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	int	i;
+
 	if (!s)
 		return ;
-	int	i;
-	
 	i = 0;
 	while (s[i])
 	{
