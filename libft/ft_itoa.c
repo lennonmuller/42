@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:16:46 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/07 13:51:56 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:59:22 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_itoa(int n)
 		result[0] = '-';
 		num = -num;
 	}
-	while (len-- >= 0 && result[len] != '-')
+	while (--len >= 0 && result[len] != '-')
 	{
 		result[len] = (num % 10) + '0';
 		num /= 10;
