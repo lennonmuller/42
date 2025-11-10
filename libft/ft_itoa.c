@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:16:46 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/06 18:22:53 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 13:51:56 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*ft_itoa(int n)
 	char		*result;
 
 	num = n;
-	len = numlen(n);
-	result = (char *)ft_calloc(sizeof(char), (len + 1));
+	len = numlen(num);
+	result = (char *)ft_calloc((len + 1), sizeof(char));
 	if (!result)
 		return (NULL);
 	if (num < 0)

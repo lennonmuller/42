@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 char transform(unsigned int i, char c);
+void    test_iteri(unsigned int i, char *c);
 
 int main()
 {
@@ -185,11 +187,11 @@ int main()
 
     // Example of ft_strtrim
     printf("\n====STRTRIM:====\n");
-    printf("%s\n", ft_strtrim("xuxuXurrascoxuxu", "xu"));
+    printf("%s\n", ft_strtrim("xuxuXuxaxuxu", "xu"));
 
     // Example of ft_split
     printf("\n====SPLIT:====\n");
-    char    **split = ft_split("festa da xuxa", ' ');
+    char    **split = ft_split("spithoferi splichofai he", ' ');
     printf("%s\n", split[0]);
     printf("%s\n", split[1]);
     printf("%s\n", split[2]);
@@ -208,7 +210,7 @@ int main()
     //Example of ft_strmapi
     printf("\n====STRMAPI:====\n");
     const char  *mamaco = "bezerro manso mama na mae dele e na dos outros";
-    char    *modified = ft_strmapi(mamaco, ft_split(mamaco, ' '));
+    char    *modified = ft_strmapi(mamaco, transform);
     if (modified)
     {
         printf("Original: %s\n", mamaco);
@@ -220,14 +222,38 @@ int main()
         printf("Memory allocation failed.\n");
     }
 
+    //Example of Iteri
+    printf("\n====STRITERI:====\n");
+    char    s[] = "coe buneca";
+    ft_striteri(s, test_iteri);
+    printf("%s\n", s);
+
+    printf("\n====FD:====\n"); 
+    // FD test
+    int fd = open("file.txt", O_RDWR, O_CREAT);
+    ft_putchar_fd('c', 1);
+    ft_putchar_fd('\n', 1);
+    ft_putchar_fd('b', fd);
+    ft_putchar_fd('\n', fd);
+ /*    char puts[] = "labubu\n"; */
+    ft_putstr_fd("Vamos ", fd);
+    ft_putendl_fd("Sao Paulo!!", fd);
+    ft_putnbr_fd(12345789, 1);
     
+
     return (0);
 }
 
 char transform(unsigned int i, char c)
-    {
-        if (i % 2 == 0)
-            return (c >= 'a' && c <= 'z') ? c - 32 : c;
-        else
-            return (c >= 'A' && c <= 'Z') ? c + 32 : c;
-    }
+{
+    if (i % 2 == 0)
+        return (c >= 'a' && c <= 'z') ? c - 32 : c;
+    else
+        return (c >= 'A' && c <= 'Z') ? c + 32 : c;
+}
+
+void    test_iteri(unsigned int i, char *c)
+{
+	if (i % 2 == 0)
+		*c = *c - 32;
+}

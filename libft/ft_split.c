@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 14:32:54 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/06 18:28:38 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/11/07 13:32:11 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static size_t	count_words(char const *s, char c);
 static char		*get_word(char const *s, char c);
-static char		**ft_free(char const **s, int i);
-static char	fill_split(char **split, char const *s, char c);
+static char		**free_split(char const **s, int i);
+static char		**fill_split(char **split, char const *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
@@ -69,7 +69,7 @@ static char	*get_word(char const *s, char c)
 	return (word);
 }
 
-static char	**ft_free(char const **s, int i)
+static char	**free_split(char const **s, int i)
 {
 	while (i >= 0)
 	{
@@ -80,7 +80,7 @@ static char	**ft_free(char const **s, int i)
 	return (NULL);
 }
 
-static char	fill_split(char **split, char const *s, char c)
+static char	**fill_split(char **split, char const *s, char c)
 {
 	size_t	i;
 	size_t	y;
@@ -93,7 +93,7 @@ static char	fill_split(char **split, char const *s, char c)
 		{
 			split[y] = get_word(&s[i], c);
 			if (!split[y])
-				return (0);
+				return (free_split((const char **)split, y - 1));
 			y++;
 			while (s[i] && s[i] != c)
 				i++;

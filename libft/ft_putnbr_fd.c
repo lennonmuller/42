@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 20:08:41 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/07 12:28:45 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/11/07 17:29:07 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/11/07 17:43:44 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned char		*d;
-	unsigned const char	*s;
-	size_t				i;
-
-	if (dst == NULL && src == NULL)
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else
 	{
-		return (dst);
+		if (n < 0)
+		{
+			write(fd, "-", 1);
+			n = -n;
+		}
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		write(fd, &"0123456789"[n % 10], 1);
 	}
-	i = 0;
-	d = (unsigned char *)dst;
-	s = (unsigned const char *)src;
-	while (i < n)
-	{
-		d[i] = s[i];
-		i++;
-	}
-	return (dst);
 }
