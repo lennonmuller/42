@@ -10,12 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libftprintf.a
 LIBFT_A = libft/libft.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I.
 RM = rm -f
-NAME = libftprintf.a
-SRC = ft_printf.c
+SRC = ft_printf.c srcs/print_string.c srcs/print_int.c srcs/print_char.c \
+	srcs/ft_putnbr_base.c srcs/print_pointer.c srcs/print_unsigned.c \
+	srcs/print_hex.c
 OBJ = $(SRC:.c=.o)
 AR = ar rcs
 

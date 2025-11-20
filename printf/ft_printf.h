@@ -16,9 +16,28 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
+# include <limits.h>
+# include <unistd.h>
 
 int ft_printf(const char *format, ...);
-int main(void);
-int minha_func_variadica(int num_args, ...);
+int ft_putnbr_base(unsigned long long nbr, char *base);
+int print_string(va_list args);
+int	print_int(va_list args);
+int print_char(va_list args);
+int print_pointer(va_list args);
+int print_unsigned(va_list args);
+int print_hex(va_list args, char spec);
+
+typedef struct s_format_flags
+{
+	int		minus;  // Flag '-' (alinhamento à esquerda)
+	int		zero;   // Flag '0' (padding com zeros)
+	int		width;  // Largura mínima do campo
+	int		dot;    // Flag '.' (precisão)
+	int		precision; // Valor da precisão
+	int		hash;   // Flag '#' (formato alternativo 0x)
+	int		space;  // Flag ' ' (espaço para positivos)
+	int		plus;   // Flag '+' (sinal para positivos)
+}	t_flags;
 
 #endif
