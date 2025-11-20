@@ -6,13 +6,13 @@
 #    By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 20:01:05 by lmuler-f          #+#    #+#              #
-#    Updated: 2025/10/21 20:01:05 by lmuler-f         ###   ########.fr        #
+#    Updated: 2025/11/20 14:16:29 by lmuler-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I../includes/
 AR = ar rcs
 
 SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c \
