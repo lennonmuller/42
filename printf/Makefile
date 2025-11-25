@@ -11,31 +11,33 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
+
 LIBFT_A = libft/libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./includes/
 RM = rm -f
+AR = ar rcs
+
 SRC = ft_printf.c srcs/print_string.c srcs/print_int.c srcs/print_char.c \
 	srcs/ft_putnbr_base.c srcs/print_pointer.c srcs/print_unsigned.c \
 	srcs/print_hex.c
+
 OBJ = $(SRC:.c=.o)
-AR = ar rcs
 
 
 all: $(NAME)
 	
-$(NAME): $(OBJ) $(LIBFT_A)
-	$(AR) $(NAME) $(OBJ) $(LIBFT_A)
-
-$(LIBFT_A):
+$(NAME): $(OBJ)
 	$(MAKE) -C ./libft
+	cp libft/libft.a $(NAME)
+	$(AR) $(NAME) $(OBJ)
 
 clean:
-	$(MAKE) clean -C ./libft
+	make clean -C ./libft
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(MAKE) fclean -C ./libft
+	make fclean -C ./libft
 	$(RM) $(NAME)
 
 re: fclean all

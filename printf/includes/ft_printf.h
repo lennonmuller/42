@@ -28,16 +28,4 @@ int	print_pointer(va_list args);
 int	print_unsigned(va_list args);
 int	print_hex(va_list args, char spec);
 
-typedef struct s_format_flags
-{
-	int		minus;
-	int		zero;
-	int		width;
-	int		dot;
-	int		precision;
-	int		hash;
-	int		space;
-	int		plus;
-}	t_flags;
-
 #endif
