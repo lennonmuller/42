@@ -1,49 +1,33 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 12:13:40 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/11/27 17:28:58 by lmuler-f         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list = NULL;
-	char			*next_line;
+	static char	*rest;
+	char		*line;
+	char		*buf;
+	ssize_t		bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
 		return (NULL);
-
-	create_list(&list, fd);
-}
-void	append(t_list **list, char *buf)
-{
-	t_list	*new_node;
-	t_list	*temp;
-
-	new_node = malloc(sizeof(t_list));
-	if (NULL == new_node)
+	bytes_read = 1;
+	while (!ft_strchr(rest, '\n') && bytes_read != 0)
 	{
-		free(buf);
-		return ;
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(buf);
+			free(rest);
+			rest = NULL;
+			return (NULL);
+		}
+		buf[bytes_read] = '\0';
+		rest = ft_strjoin_free(rest, buf);
+		if (!rest)
+			return (NULL);
 	}
-	new_node->str_buf = buf;
-	new_node->next = NULL;
-
-	if (*list == NULL)
-	{
-		*list = new_node;
-		return ;
-	}
-
-	temp = *list;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new_node;
+	free(buf);
+	line = extract_line(rest);
+	rest = actualize_rest(rest);
+	return (line);
 }
