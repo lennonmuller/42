@@ -1,0 +1,15 @@
+BasedOnStyle: LLVM
+UseTab: ForIndentation
+IndentWidth: 4
+TabWidth: 4
+ColumnLimit: 80
+BreakBeforeBraces: Attach
+AlignAfterOpenBracket: Align
+AllowShortFunctionsOnASingleLine: None
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+# Keep minimal formatting changes to avoid large diffs
+SortIncludes: false
+MaxEmptyLinesToKeep: 1
+

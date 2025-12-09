@@ -1,118 +1,118 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/09 16:55:34 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/12/09 19:40:39 by lmuler-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	unsigned int	i;
-	unsigned char	cc;
-
-	if (!s)
-		return (NULL);
-	i = 0;
-	cc = (unsigned char)c;
-	while (s[i])
-	{
-		if (s[i] == cc)
-			return ((char *) &s[i]);
-		i++;
-	}
-	if (cc == '\0')
-	{
-		return ((char *) &s[i]);
-	}
-	return (NULL);
-}
-
-static size_t	ft_strlen(char *s)
+size_t	gnl_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (s && s[i])
-	{
+	if (!s)
+		return (0);
+	while (s[i])
 		i++;
-	}
 	return (i);
 }
 
-char	*ft_strjoin_free(char *rest, char *buffer)
+char	*gnl_strchr(const char *s, int c)
 {
+	char	find;
+
+	find = (char)c;
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s == find)
+			return ((char *)s);
+		s++;
+	}
+	if (find == '\0')
+		return ((char *)s);
+	return (NULL);
+}
+
+char	*gnl_strjoin(char const *s1, char const *s2)
+{
+	char	*new_str;
 	size_t	i;
 	size_t	j;
-	char	*new_str;
 
-	if (!rest)
-	{
-		rest = malloc(1);
-		if (!rest)
-			return (NULL);
-		rest[0] = '\0';
-	}
-	new_str = malloc(ft_strlen(rest) + ft_strlen(buffer) + 1);
+	new_str = malloc(gnl_strlen(s1) + gnl_strlen(s2) + 1);
 	if (!new_str)
-		return (free(rest), NULL);
-	i = -1;
-	while (rest[++i])
-		new_str[i] = rest[i];
+		return (NULL);
+	i = 0;
 	j = 0;
-	while (buffer[j])
-		new_str[i++] = buffer[j++];
-	new_str[i] = '\0';
-	free(rest);
+	if (s1)
+	{
+		while (s1[i])
+			new_str[j++] = s1[i++];
+	}
+	i = 0;
+	if (s2)
+	{
+		while (s2[i])
+			new_str[j++] = s2[i++];
+	}
+	new_str[j] = '\0';
 	return (new_str);
 }
 
-char	*extract_line(const char *rest)
+char	*gnl_get_line(const char *stash)
 {
-	size_t	i;
 	char	*line;
+	size_t	len;
+	size_t	i;
 
-	if(!rest || !*rest)
+	len = 0;
+	if (!stash || !stash[0])
 		return (NULL);
-	i = 0;
-	while (rest[i] && rest[i] != '\n')
-		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
+	while (stash[len] && stash[len] != '\n')
+		len++;
+	if (stash[len] == '\n')
+		len++;
+	line = (char *)malloc(sizeof(char) * (len + 1));
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (rest[i] && rest[i] != '\n')
+	while (i < len)
 	{
-		line[i] = rest[i];
-		i++;
-	}
-	if (rest[i] == '\n')
-	{
-		line[i] = rest[i];
+		line[i] = stash[i];
 		i++;
 	}
 	line[i] = '\0';
 	return (line);
 }
 
-char	*actualize_rest(char *rest)
+char	*gnl_clean_stash(char *stash)
 {
+	char	*new_stash;
 	size_t	i;
 	size_t	j;
-	char	*new_rest;
 
-	if (!rest)
-		return (NULL);
 	i = 0;
-	while (rest[i] && rest[i] != '\n')
+	while (stash[i] && stash[i] != '\n')
 		i++;
-	if (!rest[i])
-	{
-		free(rest);
-		return (NULL);
-	}
-	new_rest = (char *)malloc(sizeof(char) * (ft_strlen(rest) - (i + 1) + 1));
-	if (!new_rest)
-		return (NULL);
+	if (!stash[i])
+		return (free(stash), NULL);
 	i++;
+	new_stash = (char *)malloc(sizeof(char) * (gnl_strlen(stash) - i + 1));
+	if (!new_stash)
+		return (free(stash), NULL);
 	j = 0;
-	while (rest[i])
-		new_rest[j++] = rest[i++];
-	new_rest[j] = '\0';
-	free(rest);
-	return (new_rest);
+	while (stash[i])
+		new_stash[j++] = stash[i++];
+	new_stash[j] = '\0';
+	free(stash);
+	return (new_stash);
 }

@@ -1,4 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/09 19:24:31 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/12/09 19:47:59 by lmuler-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
+#include <stdio.h>
+#include <fcntl.h>
 
 /* void	contador_persistente(void)
 {
@@ -9,35 +23,23 @@
 	
 }*/
 
-
 int	main(void)
 {
-	int	fd;
-	ssize_t	bytes_read;
+	int		fd;
+	int		count_line;
 	char	*linha;
 
-	fd = open("text.txt", O_RDONLY);
-	linha = get_next_line(fd);
+	fd = open("mylord.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		write(2, "Fudeu, deu erro.\n", 17);
 		return (1);
 	}
-	printf("Linha Recebida: %s\n", linha);
-	while (1)
+	count_line = 1;
+	while ((linha = get_next_line(fd)))
 	{
-		bytes_read = read(fd, linha, 250);
-		if (bytes_read == -1)
-		{
-			write(2, "Fudeu, deu erru.\n", 17);
-			close(fd);
-			return (1);
-		}
-		if (bytes_read == 0)
-			break;
-
-		linha[bytes_read] = '\0';
-		printf("-- Lido %ld bytes --\n%s\n", bytes_read, linha);
+		printf("Linha %d: %s", count_line, linha);
+		count_line++;
 	}
 	free(linha);
 	close(fd);
