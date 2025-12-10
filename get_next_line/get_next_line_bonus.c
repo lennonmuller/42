@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/09 12:13:15 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/12/10 14:00:47 by lmuler-f         ###   ########.fr       */
+/*   Created: 2025/12/10 13:31:57 by lmuler-f          #+#    #+#             */
+/*   Updated: 2025/12/10 13:52:58 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*free_and_null(char *ptr1, char *ptr2)
 {
@@ -64,30 +64,42 @@ char	*get_next_line(int fd)
 	stash[fd] = gnl_clean_stash(stash[fd]);
 	return (line);
 }
-/*int	main(void)
-{
-	int		fd;
-	int		count_line;
-	char	*linha = strdup("start");
+//main bonus
+// #include "get_next_line_bonus.h"
 
-	fd = open("file.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		write(2, "Fudeu, deu erro.\n", 17);
-		return (1);
-	}
-	count_line = 1;
-	while (linha)
-	{
-		free(linha);
-		linha = get_next_line(fd);
-		if (linha)
-		{
-			printf("Linha %d: %s", count_line, linha);
-			count_line++;
-		}
-	}
-	free(linha);
-	close(fd);
-	return (0);
-}*/
+// int	main(void)
+// {
+// 	int		fd1;
+// 	int		fd2;
+// 	int		fd3;
+// 	char	*buf = strdup("start");
+
+// 	system(
+// 		"git clone https://gist.github.com/6ae63abd1834485811200daefc319b40.git"
+// 	);
+// 	system("mv './6ae63abd1834485811200daefc319b40/bee movie script' .");
+// 	system("cp 'bee movie script' bee_movie_script_1");
+// 	system("cp 'bee movie script' bee_movie_script_2");
+// 	system("cp 'bee movie script' bee_movie_script_3");
+// 	fd1 = open("bee_movie_script_1", O_RDONLY);
+// 	fd2 = open("bee_movie_script_2", O_RDONLY);
+// 	fd3 = open("bee_movie_script_3", O_RDONLY);
+// 	while (buf)
+// 	{
+// 		free (buf);
+// 		buf = get_next_line(fd1);
+// 		if (buf)
+// 			printf("%s", buf);
+// 		free (buf);
+// 		buf = get_next_line(fd2);
+// 		if (buf)
+// 			printf("%s", buf);
+// 		free (buf);
+// 		buf = get_next_line(fd3);
+// 		if (buf)
+// 			printf("%s", buf);
+// 	}
+// 	close(fd1);
+// 	close(fd2);
+// 	close(fd3);
+// }
