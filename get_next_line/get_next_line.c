@@ -6,7 +6,7 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:13:15 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/12/10 14:00:47 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:16:44 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ static char	*read_and_join(int fd, char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash[1024];
+	static char	*stash;
 	char		*line;
 
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash[fd] = read_and_join(fd, stash[fd]);
-	if (!stash[fd])
+	stash = read_and_join(fd, stash);
+	if (!stash)
 		return (NULL);
-	line = gnl_get_line(stash[fd]);
+	line = gnl_get_line(stash);
 	if (!line)
 	{
-		stash[fd] = free_and_null(stash[fd], NULL);
+		stash = free_and_null(stash, NULL);
 		return (NULL);
 	}
-	stash[fd] = gnl_clean_stash(stash[fd]);
+	stash = gnl_clean_stash(stash);
 	return (line);
 }
 /*int	main(void)
