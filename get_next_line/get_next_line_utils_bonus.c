@@ -1,118 +1,90 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*    get_next_line_utils_bonus.c                       :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:33:42 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/12/10 13:34:04 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/12/16 19:28:41 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	gnl_strlen(const char *s)
+size_t	gnl_strlen(const char *str)
 {
 	size_t	i;
 
 	i = 0;
-	if (!s)
+	if (!str)
 		return (0);
-	while (s[i])
-		i++;
+	while (str[i])
+	{
+		if (str[i++] == '\n')
+			break ;
+	}
 	return (i);
 }
 
-char	*gnl_strchr(const char *s, int c)
+char	*gnl_strjoin(char *s1, char *s2)
 {
-	char	find;
+	char	*str;
+	size_t	i;
+	size_t	j;
 
-	find = (char)c;
-	if (!s)
-		return (NULL);
-	while (*s)
+	str = malloc(gnl_strlen(s1) + gnl_strlen(s2) + 1);
+	if (!str)
+		return (free(s1), NULL);
+	i = 0;
+	while (s1 && s1[i])
 	{
-		if (*s == find)
-			return ((char *)s);
-		s++;
+		str[i] = s1[i];
+		i++;
 	}
-	if (find == '\0')
-		return ((char *)s);
+	j = 0;
+	while (s2[j])
+	{
+		str[i++] = s2[j];
+		if (s2[j++] == '\n')
+			break ;
+	}
+	str[i] = '\0';
+	free (s1);
+	return (str);
+}
+
+char	*gnl_strchr(const char *str, int c)
+{
+	size_t	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			if (str[i] == (char)c)
+				return ((char *)&str[i]);
+			i++;
+		}
+		if ((char)c == '\0')
+			return ((char *)&str[i]);
+	}
 	return (NULL);
 }
 
-char	*gnl_strjoin(char const *s1, char const *s2)
+void	update_buffer(char *buffer)
 {
-	char	*new_str;
-	size_t	i;
-	size_t	j;
-
-	new_str = malloc(gnl_strlen(s1) + gnl_strlen(s2) + 1);
-	if (!new_str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	if (s1)
-	{
-		while (s1[i])
-			new_str[j++] = s1[i++];
-	}
-	i = 0;
-	if (s2)
-	{
-		while (s2[i])
-			new_str[j++] = s2[i++];
-	}
-	new_str[j] = '\0';
-	return (new_str);
-}
-
-char	*gnl_get_line(const char *stash)
-{
-	char	*line;
-	size_t	len;
-	size_t	i;
-
-	len = 0;
-	if (!stash || !stash[0])
-		return (NULL);
-	while (stash[len] && stash[len] != '\n')
-		len++;
-	if (stash[len] == '\n')
-		len++;
-	line = (char *)malloc(sizeof(char) * (len + 1));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		line[i] = stash[i];
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
-}
-
-char	*gnl_clean_stash(char *stash)
-{
-	char	*new_stash;
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (!stash[i])
-		return (free(stash), NULL);
-	i++;
-	new_stash = (char *)malloc(sizeof(char) * (gnl_strlen(stash) - i + 1));
-	if (!new_stash)
-		return (free(stash), NULL);
 	j = 0;
-	while (stash[i])
-		new_stash[j++] = stash[i++];
-	new_stash[j] = '\0';
-	free(stash);
-	return (new_stash);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == '\n')
+		i++;
+	while (buffer[i])
+		buffer[j++] = buffer[i++];
+	buffer[j] = '\0';
 }

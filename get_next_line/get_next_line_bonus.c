@@ -6,64 +6,41 @@
 /*   By: lmuler-f <lmuler-f@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 13:31:57 by lmuler-f          #+#    #+#             */
-/*   Updated: 2025/12/10 13:52:58 by lmuler-f         ###   ########.fr       */
+/*   Updated: 2025/12/16 19:41:06 by lmuler-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static char	*free_and_null(char *ptr1, char *ptr2)
-{
-	free(ptr1);
-	free(ptr2);
-	return (NULL);
-}
-
-static char	*read_and_join(int fd, char *stash)
-{
-	char	*buffer;
-	char	*temp;
-	ssize_t	bytes_read;
-
-	buffer = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
-	if (!buffer)
-		return (free_and_null(stash, NULL));
-	bytes_read = 1;
-	while (!gnl_strchr(stash, '\n') && bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
-			return (free_and_null(stash, buffer));
-		buffer[bytes_read] = '\0';
-		temp = gnl_strjoin(stash, buffer);
-		free(stash);
-		stash = temp;
-		if (!stash)
-			return (free_and_null(buffer, NULL));
-	}
-	free(buffer);
-	return (stash);
-}
-
 char	*get_next_line(int fd)
 {
-	static char	*stash[1024];
+	static char	buffer[1024][BUFFER_SIZE + 1];
 	char		*line;
+	ssize_t		chars_read;
 
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash[fd] = read_and_join(fd, stash[fd]);
-	if (!stash[fd])
-		return (NULL);
-	line = gnl_get_line(stash[fd]);
-	if (!line)
+	line = NULL;
+	while (1)
 	{
-		stash[fd] = free_and_null(stash[fd], NULL);
-		return (NULL);
+		if (buffer[fd][0] == '\0')
+		{
+			chars_read = read(fd, buffer[fd], BUFFER_SIZE);
+			if (chars_read < 0)
+				return (free(line), NULL);
+			if (chars_read == 0)
+				return (line);
+			buffer[fd][chars_read] = '\0';
+		}
+		line = gnl_strjoin(line, buffer[fd]);
+		if (!line || gnl_strchr(buffer[fd], '\n'))
+			break ;
+		buffer[fd][0] = '\0';
 	}
-	stash[fd] = gnl_clean_stash(stash[fd]);
+	update_buffer(buffer[fd]);
 	return (line);
 }
+
 //main bonus
 // #include "get_next_line_bonus.h"
 
